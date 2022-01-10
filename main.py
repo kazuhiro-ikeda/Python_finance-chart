@@ -7,7 +7,7 @@ st.title('株価可視化アプリ')
 
 st.sidebar.write(
     """
-        # GAFA株価
+        # GAFAなど株価 + トヨタ自動車
         こちらは株価可視化ツールです。以下のオプションから表示日数を指定できます。
     """
 )
@@ -22,7 +22,7 @@ days = st.sidebar.slider('日数', 1, 50, 20)
 
 st.write(
     f"""
-        ### 過去 **{days}日間** のGAFA株価
+        ### 過去 **{days}日間** のGAFAなど + トヨタ自動車の株価
     """
 )
 
@@ -78,9 +78,9 @@ try:
         data = df.loc[companies]
         st.write('#### 株価USD', data.sort_index())
         data = data.T.reset_index()
-        data = pd.melt(data, id_vars=['index']).rename(
+        data = pd.melt(data, id_vars=['Date']).rename(
             columns={
-                'index': 'Date',
+                #'index': 'Date',
                 'value': 'Stock Prices(USD)'
             }
         )
